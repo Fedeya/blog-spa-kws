@@ -55,4 +55,10 @@ postCtrl.deletePost = async (req, res) => {
   res.json({ message: "El Post Fue Eliminado." });
 };
 
+
+postCtrl.getPopularPosts = async (req, res) => {
+  const posts = await Post.find().limit(10).sort({likes: -1 })
+  res.json(posts)
+}
+
 export default postCtrl;

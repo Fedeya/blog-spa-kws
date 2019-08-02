@@ -22,4 +22,8 @@ router.put('/edit/:id', postController.editPost)
 router.post('/:id/like', postController.addLike)
 
 
+// most popular posts
+router.get('/popular', postController.getPopularPosts)
+
+
 export default router
