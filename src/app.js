@@ -1,6 +1,7 @@
 // requirements
 import express from 'express'
 import dotenv from 'dotenv'
+import cors from 'cors'
 const app = express()
 
 // importing routes
@@ -13,6 +14,7 @@ dotenv.config()
 app.set('port', process.env.PORT || 4000)
 
 // middlewares
+app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 
