@@ -21,7 +21,7 @@ class PostList extends Component{
 
   render(){
     if(!this.state.isReady){
-      return <ReactLoading color="#000" className="mx-auto" type="bars" height={100} width={100} />
+      return <ReactLoading color="#000" className="mx-auto" type="bars"/>
     }
 
     return (

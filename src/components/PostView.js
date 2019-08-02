@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import helpers from "../helpers";
 
 class PostView extends Component{
 
@@ -7,11 +8,10 @@ class PostView extends Component{
 
     let { content, created, title, id } = this.props;
 
-    created = new Date(created).toString().split(" ");
-    created = `${created[2]} de ${created[1]}, ${created[3]}`
+    created = helpers.transformDate(created);
 
     return (
-      <div className="card">
+      <div className="card mb-3">
         <div className="card-body">
           <h4>{title}</h4>
           <p>{content}</p>
