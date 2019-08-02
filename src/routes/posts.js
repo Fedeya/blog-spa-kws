@@ -4,10 +4,10 @@ const router = Router()
 import postController from '../controllers/postCtrl'
 
 // sending all posts
-router.get('/', postController.getAllPosts)
+router.get('/getAll', postController.getAllPosts)
 
 // sending one post
-router.get('/:id', postController.getOnePost)
+router.get('/getOne/:id', postController.getOnePost)
 
 // creating a post
 router.post('/add', postController.createPost)
@@ -19,7 +19,7 @@ router.delete('/delete/:id', postController.deletePost)
 router.put('/edit/:id', postController.editPost)
 
 // liking a post
-router.post('/:id/like', postController.addLike)
+router.post('/like/:id', postController.addLike)
 
 
 // most popular posts

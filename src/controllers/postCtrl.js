@@ -58,7 +58,7 @@ postCtrl.deletePost = async (req, res) => {
 
 postCtrl.getPopularPosts = async (req, res) => {
   const posts = await Post.find().limit(10).sort({likes: -1 })
-  res.json(posts)
+  res.json(posts);
 }
 
 export default postCtrl;
