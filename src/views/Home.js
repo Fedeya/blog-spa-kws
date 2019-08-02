@@ -9,7 +9,7 @@ class Home extends Component{
         <div className="col-md-8">
           <PostList />
         </div>
-        <div className="col-md-4">
+        <div className="col-md-4 mt-sm-4 mt-md-0">
           <MostPopular />
         </div>
       </div>

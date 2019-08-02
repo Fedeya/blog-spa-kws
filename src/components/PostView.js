@@ -5,7 +5,7 @@ class PostView extends Component{
 
   render(){
 
-    let { content, created, title } = this.props;
+    let { content, created, title, id } = this.props;
 
     created = new Date(created).toString().split(" ");
     created = `${created[2]} de ${created[1]}, ${created[3]}`
@@ -18,7 +18,7 @@ class PostView extends Component{
         </div>
         <div className="card-footer d-flex justify-content-between">
           <span>{created}</span>
-          <Link to="">Seguir Leyendo...</Link>
+          <Link to={`/post/${id}`} >Seguir Leyendo...</Link>
         </div>
       </div>
     )

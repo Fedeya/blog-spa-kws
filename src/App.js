@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import Home from "./views/Home";
+import Post from "./views/Post";
 
 class App extends Component{
   render(){
@@ -9,7 +10,8 @@ class App extends Component{
       <Router>
         <div className="container">
           <Switch>
-            <Route path="/" component={Home} />
+            <Route exact path="/" component={Home} />
+            <Route path="/post/:id" component={Post} />
           </Switch>
         </div>
       </Router>
