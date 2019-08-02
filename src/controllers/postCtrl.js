@@ -38,6 +38,18 @@ postCtrl.editPost = async (req, res) => {
   res.json(postUpdated);
 };
 
+postCtrl.addLike = async (req, res) => {
+  const post = await Post.findOne({ _id: req.params.id });
+
+  if (post) {
+    post.likes = post.likes + 1;
+    await post.save();
+    res.json({ likes: post.likes });
+  } else {
+    res.status(500).json({ error: "internal error" });
+  }
+}
+
 postCtrl.deletePost = async (req, res) => {
   await Post.findByIdAndDelete(req.params.id);
   res.json({ message: "El Post Fue Eliminado." });

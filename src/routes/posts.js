@@ -18,4 +18,8 @@ router.delete('/delete/:id', postController.deletePost)
 // editing a post
 router.put('/edit/:id', postController.editPost)
 
+// liking a post
+router.post('/:id/like', postController.addLike)
+
+
 export default router
