@@ -21,6 +21,8 @@ router.put('/edit/:id', postController.editPost)
 // liking a post
 router.post('/like/:id', postController.addLike)
 
+// comment a post
+router.post('/comment/:id', postController.postComment)
 
 // most popular posts
 router.get('/popular', postController.getPopularPosts)

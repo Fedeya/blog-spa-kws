@@ -1,7 +1,13 @@
 const postCtrl = {};
 
+// importing md5
+import md5 from 'md5'
+
 // importing the post model
 import Post from "../models/Post";
+
+// importing the comment model
+import Comment from "../models/Comment";
 
 postCtrl.getAllPosts = async (req, res) => {
   const limit = req.query.page * 5;
@@ -48,17 +54,38 @@ postCtrl.addLike = async (req, res) => {
   } else {
     res.status(500).json({ error: "internal error" });
   }
-}
+};
+
+postCtrl.postComment = async (req, res) => {
+  const post = await Post.findOne({ _id: req.params.id });
+
+  if (post) {
+    const { email, name, comment } = req.body;
+
+    const newComment = new Comment({
+      email,
+      name,
+      comment,
+      post_id: post._id,
+      gravatar: md5(email)
+    });
+
+    await newComment.save();
+
+    res.json(newComment); 
+  }
+};
 
 postCtrl.deletePost = async (req, res) => {
   await Post.findByIdAndDelete(req.params.id);
   res.json({ message: "El Post Fue Eliminado." });
 };
 
-
 postCtrl.getPopularPosts = async (req, res) => {
-  const posts = await Post.find().limit(10).sort({likes: -1 })
+  const posts = await Post.find()
+    .limit(10)
+    .sort({ likes: -1 });
   res.json(posts);
-}
+};
 
 export default postCtrl;
