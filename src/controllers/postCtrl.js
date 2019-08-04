@@ -56,6 +56,11 @@ postCtrl.addLike = async (req, res) => {
   }
 };
 
+postCtrl.getComments = async (req, res) => {
+  const comments = await Comment.find({post_id: req.params.id})
+  res.json(comments)
+}
+
 postCtrl.postComment = async (req, res) => {
   const post = await Post.findOne({ _id: req.params.id });
 
@@ -72,12 +77,17 @@ postCtrl.postComment = async (req, res) => {
 
     await newComment.save();
 
+    post.comments = post.comments + 1;
+    await post.save();
+
     res.json(newComment); 
   }
 };
 
 postCtrl.deletePost = async (req, res) => {
   await Post.findByIdAndDelete(req.params.id);
+  await Comment.deleteMany({post_id: req.params.id});
+
   res.json({ message: "El Post Fue Eliminado." });
 };
 

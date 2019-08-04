@@ -21,6 +21,9 @@ router.put('/edit/:id', postController.editPost)
 // liking a post
 router.post('/like/:id', postController.addLike)
 
+// get post comments
+router.get('/getComments/:id', postController.getComments)
+
 // comment a post
 router.post('/comment/:id', postController.postComment)
 
