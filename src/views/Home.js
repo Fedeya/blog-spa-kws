@@ -7,7 +7,8 @@ class Home extends Component{
     return (
       <div className="row mt-3">
         <div className="col-md-8">
-          <PostList />
+          <h3>Últimas entradas</h3>
+          <PostList page={1} />
         </div>
         <div className="col-md-4 mt-sm-4 mt-md-0">
           <MostPopular />

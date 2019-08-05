@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import Home from "./views/Home";
 import Post from "./views/Post";
+import Articles from "./views/Articles";
 import Navigation from "./components/Navigation";
 
 class App extends Component{
@@ -14,6 +15,8 @@ class App extends Component{
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/post/:id" component={Post} />
+            <Route exact path="/articles" component={Articles} />
+            <Route path="/articles/:page" component={Articles} />
           </Switch>
         </div>
       </Router>

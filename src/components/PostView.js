@@ -14,7 +14,7 @@ class PostView extends Component{
       <div className="card mb-3">
         <div className="card-body">
           <h4>{title}</h4>
-          <p>{content}</p>
+          <p>{content.substr(0, 200)}...</p>
         </div>
         <div className="card-footer d-flex justify-content-between">
           <span>{created}</span>

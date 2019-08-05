@@ -11,7 +11,8 @@ class PostList extends Component{
   }
 
   getPosts = async () => {
-    const posts = await axios.get("http://localhost:4000/posts/getAll");
+    const { page } = this.props;
+    const posts = await axios.get("http://localhost:4000/posts/getAll?page="+page);
     this.setState({posts: posts.data, isReady: true});
   }
 

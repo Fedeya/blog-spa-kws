@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import ReactLoading from "react-loading";
 import axios from "axios";
-import MostPopular from "../components/MostPopular";
 import helpers from "../helpers";
 
 
@@ -11,6 +10,7 @@ class Post extends Component{
     title: "",
     content: "",
     createdAt: "",
+    imageUrl: "",
     likes: 0,
     comments: 0,
     isReady: false
@@ -19,7 +19,7 @@ class Post extends Component{
   getPost = async () => {
     const post = await axios.get("http://localhost:4000/posts/getOne/"+this.props.match.params.id);
     
-    const { title, content, createdAt, likes, comments } = post.data;
+    const { title, content, createdAt, likes, comments, imageUrl } = post.data;
     
     this.setState({
       title,
@@ -27,6 +27,7 @@ class Post extends Component{
       createdAt,
       likes,
       comments,
+      imageUrl,
       isReady: true
     })
   }
@@ -37,31 +38,29 @@ class Post extends Component{
 
   render(){
 
-    let { title, content, createdAt, likes, comments, isReady } = this.state;
+    let { title, content, createdAt, likes, comments, isReady, imageUrl } = this.state;
 
     createdAt = helpers.transformDate(createdAt);
 
+    if(!isReady){
+      return (
+        <ReactLoading type="bars" color="#000" className="mx-auto" />
+      )
+    }
+
     return (
-      <div className="row mt-3">
-        <div className="col-md-8">
-          {
-            isReady ? (
-              <div className="card">
-                <div className="card-body">
-                  <h3>{title}</h3>
-                  <p>{content}</p>
-                </div>
-                <div className="card-footer d-flex justify-content-between">
-                  <span>{createdAt}</span>
-                  <button className="btn btn-primary">Like!</button>
-                </div>
-              </div>
-            ) : <ReactLoading type="bars" className="mx-auto" color="#000" /> 
-          }
+      <div className="mt-3">
+        <div className="d-flex justify-content-between">
+          <span className="text-info">{createdAt}</span>
+          <span className="list-group-item border-info p-2">Aderezos</span>
         </div>
-        <div className="col-md-4">
-          <MostPopular />
+        <h2>{title}</h2>
+        <div className="d-inline">
+          <img src={imageUrl} alt="Receta" className="mr-3 rounded float-left"/>
+          <h3 className="flex-right text-right font-weight-light">Chef Alacio</h3>
+          <p className="">{content}</p>
         </div>
+        <hr/>
       </div>
     )
   }
