@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import ReactLoading from "react-loading";
 import axios from "axios";
 import helpers from "../helpers";
-
+import ListComments from "../components/ListComments";
 
 class Post extends Component{
 
@@ -61,6 +61,7 @@ class Post extends Component{
           <p className="">{content}</p>
         </div>
         <hr/>
+        <ListComments id={this.props.match.params.id} />
       </div>
     )
   }
