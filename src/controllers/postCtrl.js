@@ -27,18 +27,18 @@ postCtrl.getOnePost = async (req, res) => {
 };
 
 postCtrl.createPost = async (req, res) => {
-  const { title, content, imageUrl } = req.body;
-  const newPost = new Post({ title, content, imageUrl });
+  const { title, content, category, imageUrl } = req.body;
+  const newPost = new Post({ title, content, imageUrl, category });
 
   await newPost.save();
   res.json(newPost);
 };
 
 postCtrl.editPost = async (req, res) => {
-  const { title, content, imageUrl } = req.body;
+  const { title, content, category, imageUrl } = req.body;
   const postUpdated = await Post.findByIdAndUpdate(
     req.params.id,
-    { title, content, imageUrl },
+    { title, content, category, imageUrl },
     { new: true }
   );
   res.json(postUpdated);

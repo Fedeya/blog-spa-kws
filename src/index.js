@@ -1,16 +1,16 @@
-import "@babel/polyfill"
+import "@babel/polyfill";
 // starting the server
-import app from './app'
+import app from "./app";
 // starting the database
-import './db'
+import "./db";
 
 async function main() {
-    try {
-        await app.listen(app.get('port'))
-        console.log(`server on port ${app.get('port')}`)
-    } catch (error) {
-        console.error(error)
-    }
+  try {
+    await app.listen(app.get("port"));
+    console.log(`server on port ${app.get("port")}`);
+  } catch (error) {
+    console.error(error);
+  }
 }
 
-main()
+main();
