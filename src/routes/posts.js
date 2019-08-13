@@ -10,13 +10,13 @@ router.get('/getAll', postController.getAllPosts)
 router.get('/getOne/:id', postController.getOnePost)
 
 // creating a post
-router.post('/add', postController.createPost)
+router.post('/add', isAuthenticated, postController.createPost)
 
 // deleting a post
-router.delete('/delete/:id', postController.deletePost)
+router.delete('/delete/:id', isAuthenticated, postController.deletePost)
 
 // editing a post
-router.put('/edit/:id', postController.editPost)
+router.put('/edit/:id', isAuthenticated,postController.editPost)
 
 // liking a post
 router.post('/like/:id', postController.addLike)
@@ -29,6 +29,14 @@ router.post('/comment/:id', postController.postComment)
 
 // most popular posts
 router.get('/popular', postController.getPopularPosts)
+
+function isAuthenticated(req, res, next) {
+    if(req.isAuthenticated()) {
+        return next()
+    } else {
+        res.json({message: 'Necesitas ser administrador para entrar aqui'})
+    }
+}
 
 
 export default router
